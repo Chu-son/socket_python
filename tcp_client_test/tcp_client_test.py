@@ -2,6 +2,9 @@
 import struct
 from math import *
 from PIL import Image
+import matplotlib.pyplot as plt
+import sys
+sys.path.append("C:/Users/user/Documents/Visual Studio 2013/Projects/ICPtest/ICPtest")
 from iterative_closest_point import *
 
 def calc_local_coord(dataList):
@@ -60,7 +63,15 @@ while True:
             break
 
     img = plotPoint2Image( icp.ICPMatching( calc_local_coord(response)) , img)
-    img.show()
+    #画像をarrayに変換
+    im_list = np.asarray(img)
+    #貼り付け
+    plt.imshow(im_list)
+    plt.gray()
+    #表示
+    plt.pause(.01)
+
+    #img.show()
     #print (response)
 
 client_sock.close()
